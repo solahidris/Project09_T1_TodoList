@@ -41,8 +41,22 @@ function App() {
       <p className="bg-slate-100/90 rounded px-5 py-3 mb-4 font-mono font-bold text-l text-center">
         To-do List App
       </p>
-
+      
       <div className="bg-slate-100/90 w-full rounded px-5 py-3">
+
+      {/* testing */}
+      <p className="px-2 py-3 mb-2 bg-white rounded font-mono text-xs">apa ni</p>
+      <p className="px-2 py-3 mb-2 bg-white rounded font-mono text-xs">apa ni</p>
+      <div className="flex flex-col h-full">
+        <input className="w-auto flex-grow mb-2 resize-none" style={{ overflowWrap: "break-word" }} type="text"></input>
+        <input className="w-auto h-auto mb-2" type="text"></input>
+      </div>
+      <div class="flex flex-col">
+  <input class="w-auto flex-grow mb-2" type="text"></input>
+  <input class="w-auto flex-grow w-auto h-full mb-2" type="text"></input>
+</div>
+      {/* testing */}
+
         <p className="bg-slate-100/90 rounded px-5 py-3 mb-4 font-mono font-bold  text-l">
           List up & Just do it!
         </p>
@@ -52,8 +66,8 @@ function App() {
             <input
               key={input.id}
               className={`${
-                input.value === "" ? "bg-slate-100/50" : "bg-transparent"
-              } px-2 py-3 mb-2`}
+                input.value === "" ? "bg-slate-100/50" : "bg-slate-100/20"
+              } px-2 py-3 mb-2 hover:bg-slate-100/80 rounded font-mono text-xs flex flex-row flex-grow`}
               value={input.value}
               onChange={(e) => handleInputChange(e, input.id)}
               placeholder="to do?"
