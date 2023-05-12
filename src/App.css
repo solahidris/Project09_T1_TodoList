@@ -37,3 +37,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* add ) instead of . after decimal numbering in list item */
+
+.list-decimal {
+  list-style: none;
+  counter-reset: my-counter;
+}
+.list-decimal li:before {
+  content: counter(my-counter) ") ";
+  counter-increment: my-counter;
+  font-family: monospace;
+  font-size: 0.8rem;
+}
