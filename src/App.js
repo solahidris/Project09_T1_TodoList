@@ -2,11 +2,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import { React, useState } from "react";
 
+//HEX ABCDE #87ACE0 #607BA1 NOW#334155 #3A4A61 #232D3B
+
+
 function App() {
-  //   const [listInputValue, setListInputValue] = useState("");
-  //   const listInputValueHandler = (event) => {
-  //     setListInputValue(event.target.value);
-  //   };
 
   const [inputValues, setInputValues] = useState([
     { id: 1, value: "", isChecked: false },
@@ -47,17 +46,9 @@ function App() {
   return (
     <div className="h-screen bg-slate-700 p-10">
       <img src={logo} className="App-logo" alt="logo" />
-      <p className="text-white text-center text-xs font-mono">
-        by solah, for solah
+      <p className="text-white text-center text-xs font-mono my-4">
+        by solah
       </p>
-
-      {/* SAMPLE TO DO LINK */}
-      {/* <a
-        href="https://reactjsexample.com/tag/todo/"
-        className="text-cyan-500 flex justify-center mb-10"
-      >
-        sample todo link
-      </a> */}
 
       <p className="bg-slate-100 italic rounded px-5 py-3 mb-4 font-mono font-bold text-l text-center">
         "One 💩 at a Time" App
@@ -72,27 +63,30 @@ function App() {
 
         <div>
           {/* List Items Generator */}
-          <ol className="list-decimal ml-1">
+          <ol className="list-decimal grid gap-2">
             {inputValues.map((input) => (
-              <li
-                key={input.id}>
+              <li 
+                key={input.id}
+                className="flex flex-grow justify-between" //added
+              >
                 <input
                   className={`${
                     input.value === "" ? "bg-slate-100/50" : "bg-slate-100/10"
-                  } px-2 py-3 mb-2 hover:bg-slate-100/80 rounded font-mono text-xs`}
+                  } px-2 py-3 hover:bg-slate-100/80 rounded font-mono text-xs w-full`} //w-full mb-2
                   value={input.value}
                   onChange={(e) => handleInputChange(e, input.id)}
                   placeholder="to do?"
                   type="text"
                   style={{
-                    textDecoration: input.isChecked ? "line-through" : "none",
+                    textDecoration: input.isChecked && input.value !== "" ? "line-through" : "none",
                   }}
                 />
                 <input
                   type="checkbox"
                   checked={input.isChecked}
                   onChange={(e) => handleCheckboxChange(e, input.id)}
-                  className="ml-3 h-[15px] w-[15px] checked:accent-green-600 rounded"
+                  className="ml-3 h-auto w-auto checked:accent-green-600 rounded" //h-[15px] w-[15px] remove
+                  disabled={!input.value}
                 />
               </li>
             ))}
@@ -116,7 +110,8 @@ function App() {
         </button>
       </div>
 
-      <div className="bg-green-500">
+      {/* testing for fun */}
+      {/* <div className="bg-green-500">
         <p className="my-5 p-3 bg-red-500">test</p>
         <input button type="checkbox" />
         <p>-------</p>
@@ -128,7 +123,9 @@ function App() {
           labels
           <input type="checkbox" class="accent-pink-500"></input>
         </label>
-      </div>
+      </div> */}
+      {/* testing for fun */}
+      
     </div>
   );
 }
