@@ -1,12 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { React, useState } from "react";
+import LoginButton from "./components/login";
+import LogoutButton from "./components/logout";
+import Profile from "./components/profile";
 
 //HEX ABCDE #87ACE0 #607BA1 NOW#334155 #3A4A61 #232D3B
 
-
 function App() {
-
   const [inputValues, setInputValues] = useState([
     { id: 1, value: "", isChecked: false },
     { id: 2, value: "", isChecked: false },
@@ -46,26 +47,24 @@ function App() {
   return (
     <div className="h-screen bg-slate-700 p-10">
       <img src={logo} className="App-logo" alt="logo" />
-      <p className="text-white text-center text-xs font-mono my-4">
-        by solah
-      </p>
+      <p className="text-white text-center text-xs font-mono my-4">by solah</p>
 
-      <p className="bg-slate-100 italic rounded px-5 py-3 mb-4 font-mono font-bold text-l text-center">
+      <p className="bg-slate-100 line-through rounded px-5 py-3 mb-4 font-mono font-bold text-base text-center tracking-wide">
         "One 💩 at a Time" App
       </p>
 
       {/* Main Container */}
       <div className="bg-slate-100/90 w-full rounded px-5 py-3">
         {/* Sub-Title */}
-        <p className="bg-slate-100/90 rounded px-5 py-3 mb-4 font-mono font-bold  text-l">
-          List up & clear em up!
+        <p className="bg-slate-100/90 rounded px-5 py-3 mb-4 font-mono text-sm">
+          List down and clear em up!
         </p>
 
         <div>
           {/* List Items Generator */}
           <ol className="list-decimal grid gap-2">
             {inputValues.map((input) => (
-              <li 
+              <li
                 key={input.id}
                 className="flex flex-grow justify-between" //added
               >
@@ -78,7 +77,10 @@ function App() {
                   placeholder="to do?"
                   type="text"
                   style={{
-                    textDecoration: input.isChecked && input.value !== "" ? "line-through" : "none",
+                    textDecoration:
+                      input.isChecked && input.value !== ""
+                        ? "line-through"
+                        : "none",
                   }}
                 />
                 <input
@@ -93,10 +95,16 @@ function App() {
           </ol>
         </div>
 
+        <div className="flex gap-2">
+          <LoginButton />
+          <LogoutButton />
+        </div>
+        <Profile />
+
         {/* Add list button */}
         <button
           onClick={handleAddInput}
-          className="px-5 py-2 mt-10 mb-3 bg-slate-100/90 hover:bg-slate-300 rounded font-mono text-xs font-bold"
+          className="px-5 py-2 mt-10 mb-3 bg-slate-100/90 hover:bg-slate-200 rounded font-mono text-xs font-bold"
         >
           Add to do
         </button>
@@ -104,14 +112,14 @@ function App() {
         {/* Add Clear All button */}
         <button
           onClick={clearInputValues}
-          className="px-5 py-2 ml-3 mt-10 mb-3 bg-red-500/90 hover:bg-slate-300 rounded font-mono text-xs font-bold"
+          className="px-5 py-2 ml-3 mt-10 mb-3 bg-red-500/80 hover:bg-red-400/90 rounded font-mono text-xs font-bold"
         >
           Clear All
         </button>
       </div>
 
       {/* testing for fun */}
-      {/* <div className="bg-green-500">
+      <div className="bg-green-500">
         <p className="my-5 p-3 bg-red-500">test</p>
         <input button type="checkbox" />
         <p>-------</p>
@@ -123,15 +131,14 @@ function App() {
           labels
           <input type="checkbox" class="accent-pink-500"></input>
         </label>
-      </div> */}
+      </div>
       {/* testing for fun */}
-      
     </div>
   );
 }
 
 export default App;
 
-//login - auth0
+//login - auth0 // SIAPPPPPPP
 //database- supabase
 //vercel - deploy
