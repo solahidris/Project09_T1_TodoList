@@ -1,11 +1,24 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { React, useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import LoginButton from "./components/login";
 import LogoutButton from "./components/logout";
 import Profile from "./components/profile";
+import { createClient } from '@supabase/supabase-js'
 
-//HEX ABCDE #87ACE0 #607BA1 NOW#334155 #3A4A61 #232D3B
+const supabaseUrl = 'https://qoauxphaxzypzvsvhnny.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvYXV4cGhheHp5cHp2c3Zobm55Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQwNzYyOTIsImV4cCI6MTk5OTY1MjI5Mn0.5TZln-bQvMssi6CslmZj-kqzyFJwzsKgk6s3jJiCgDw';
+const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+// useEffect(() => {
+//   getInputValues();
+// }, []);
+
+// async function getInputValues() {
+//   const { data } = await supabaseClient.from("inputValues").select();
+//   setInputValues(data);
+// }
 
 function App() {
   const [inputValues, setInputValues] = useState([
@@ -45,6 +58,7 @@ function App() {
   };
 
   return (
+    <>
     <div className="h-screen bg-slate-700 p-10">
       <img src={logo} className="App-logo" alt="logo" />
       <p className="text-white text-center text-xs font-mono my-4">by solah</p>
@@ -63,6 +77,7 @@ function App() {
         <div>
           {/* List Items Generator */}
           <ol className="list-decimal grid gap-2">
+
             {inputValues.map((input) => (
               <li
                 key={input.id}
@@ -92,6 +107,7 @@ function App() {
                 />
               </li>
             ))}
+
           </ol>
         </div>
 
@@ -117,9 +133,16 @@ function App() {
           Clear All
         </button>
       </div>
+    </div>
+    </>
+  );
+}
+
+export default App;
+
 
       {/* testing for fun */}
-      <div className="bg-green-500">
+      {/* <div className="bg-green-500">
         <p className="my-5 p-3 bg-red-500">test</p>
         <input button type="checkbox" />
         <p>-------</p>
@@ -131,14 +154,14 @@ function App() {
           labels
           <input type="checkbox" class="accent-pink-500"></input>
         </label>
-      </div>
+      </div> */}
       {/* testing for fun */}
-    </div>
-  );
-}
 
-export default App;
+//HEX ABCDE #87ACE0 #607BA1 NOW#334155 #3A4A61 #232D3B
+
 
 //login - auth0 // SIAPPPPPPP
-//database- supabase
+//database- supabasez
+  // Supabase provides a PostgreSQL database and API 
+  //that you can use to store and retrieve data.
 //vercel - deploy
