@@ -11,15 +11,6 @@ const supabaseUrl = 'https://qoauxphaxzypzvsvhnny.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvYXV4cGhheHp5cHp2c3Zobm55Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQwNzYyOTIsImV4cCI6MTk5OTY1MjI5Mn0.5TZln-bQvMssi6CslmZj-kqzyFJwzsKgk6s3jJiCgDw';
 const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
-// useEffect(() => {
-//   getInputValues();
-// }, []);
-
-// async function getInputValues() {
-//   const { data } = await supabaseClient.from("inputValues").select();
-//   setInputValues(data);
-// }
-
 function App() {
   const [inputValues, setInputValues] = useState([
     { id: 1, value: "", isChecked: false },
@@ -57,6 +48,28 @@ function App() {
     ]);
   };
 
+
+
+  useEffect(() => {
+    getInputValues();
+  }, []);
+
+  // async function getInputValues() {
+  //   const { data } = await supabaseClient.from("inputValues").select();
+  //   setInputValues(data);
+  // };
+
+  async function getInputValues() {
+    const { data, error } = await supabaseClient.from("inputValues").select();
+  
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(data);
+      setInputValues(data);
+    }
+  }
+
   return (
     <>
     <div className="h-screen bg-slate-700 p-10">
@@ -78,7 +91,8 @@ function App() {
           {/* List Items Generator */}
           <ol className="list-decimal grid gap-2">
 
-            {inputValues.map((input) => (
+            {inputValues && inputValues.map((input) => (
+            // {inputValues.map((input) => (
               <li
                 key={input.id}
                 className="flex flex-grow justify-between" //added
