@@ -3,8 +3,9 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -35,4 +36,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* add ) instead of . after decimal numbering in list item */
+
+.list-decimal {
+  list-style: none;
+  counter-reset: my-counter;
+}
+.list-decimal li:before {
+  content: counter(my-counter) ") ";
+  counter-increment: my-counter;
+  font-family: monospace;
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 3px;
 }
