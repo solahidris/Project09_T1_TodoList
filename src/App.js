@@ -1,20 +1,18 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import LoginButton from "./components/login";
 import LogoutButton from "./components/logout";
 import Profile from "./components/profile";
-import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://qoauxphaxzypzvsvhnny.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvYXV4cGhheHp5cHp2c3Zobm55Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODQwNzYyOTIsImV4cCI6MTk5OTY1MjI5Mn0.5TZln-bQvMssi6CslmZj-kqzyFJwzsKgk6s3jJiCgDw";
-const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
 function App() {
   const [inputValues, setInputValues] = useState([
     { id: 1, value: "", isChecked: false },
+    { id: 2, value: "", isChecked: false },
+    { id: 3, value: "", isChecked: false }
   ]);
 
   const handleInputChange = (e, id) => {
@@ -43,7 +41,6 @@ function App() {
     setInputValues([{ value: "", id: Date.now() }]);
   };
 
-
   return (
     <>
       <div className="h-screen bg-slate-700 p-10">
@@ -66,40 +63,37 @@ function App() {
           <div>
             {/* List Items Generator */}
             <ol className="list-decimal grid gap-2">
-              {inputValues &&
-                inputValues.map((input) => (
-                  // {inputValues.map((input) => (
-                  <li
-                    key={input.id}
-                    className="flex flex-grow justify-between" //added
-                  >
-                    <input
-                      className={`${
-                        input.value === ""
-                          ? "bg-slate-100/50"
-                          : "bg-slate-100/10"
-                      } px-2 py-3 hover:bg-slate-100/80 rounded font-mono text-xs w-full`} //w-full mb-2
-                      value={input.value}
-                      onChange={(e) => handleInputChange(e, input.id)}
-                      placeholder="to do?"
-                      type="text"
-                      style={{
-                        textDecoration:
-                          input.isChecked && input.value !== ""
-                            ? "line-through"
-                            : "none",
-                      }}
-                    />
-                    <input
-                      type="checkbox"
-                      checked={input.isChecked}
-                      onChange={(e) => handleCheckboxChange(e, input.id)}
-                      className="ml-3 h-auto w-auto checked:accent-green-600 rounded" //h-[15px] w-[15px] remove
-                      disabled={!input.value}
-                    />
-                  </li>
-                ))}
+              {inputValues.map((input) => (
+                <li
+                  key={input.id}
+                  className="flex flex-grow justify-between" //added
+                >
+                  <input
+                    className={`${
+                      input.value === "" ? "bg-slate-100/50" : "bg-slate-100/10"
+                    } px-2 py-3 hover:bg-slate-100/80 rounded font-mono text-xs w-full`} //w-full mb-2
+                    value={input.value}
+                    onChange={(e) => handleInputChange(e, input.id)}
+                    placeholder="to do?"
+                    type="text"
+                    style={{
+                      textDecoration:
+                        input.isChecked && input.value !== ""
+                          ? "line-through"
+                          : "none",
+                    }}
+                  />
+                  <input
+                    type="checkbox"
+                    checked={input.isChecked}
+                    onChange={(e) => handleCheckboxChange(e, input.id)}
+                    className="ml-3 h-auto w-auto checked:accent-green-600 rounded" //h-[15px] w-[15px] remove
+                    disabled={!input.value}
+                  />
+                </li>
+              ))}
             </ol>
+
           </div>
 
           {/* Add list button */}
@@ -118,22 +112,16 @@ function App() {
             Clear All
           </button>
         </div>
+
+        {/* Outside box components */}
         <div className="flex gap-2">
           <LoginButton />
           <LogoutButton />
+          <Profile />
         </div>
-        <Profile />
       </div>
     </>
   );
 }
 
 export default App;
-
-//HEX ABCDE #87ACE0 #607BA1 NOW#334155 #3A4A61 #232D3B
-
-//login - auth0 // SIAPPPPPPP
-//database- supabasez
-// Supabase provides a PostgreSQL database and API
-//that you can use to store and retrieve data.
-//vercel - deploy
