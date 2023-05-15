@@ -48,8 +48,6 @@ function App() {
     ]);
   };
 
-
-
   useEffect(() => {
     getInputValues();
   }, []);
@@ -60,7 +58,7 @@ function App() {
   // };
 
   async function getInputValues() {
-    const { data, error } = await supabaseClient.from("inputValues").select();
+    const { data, error } = await supabaseClient.from("inputvalues").select('value');
   
     if (error) {
       console.log(error);
@@ -154,22 +152,6 @@ function App() {
 
 export default App;
 
-
-      {/* testing for fun */}
-      {/* <div className="bg-green-500">
-        <p className="my-5 p-3 bg-red-500">test</p>
-        <input button type="checkbox" />
-        <p>-------</p>
-        <label>
-          <input
-            type="checkbox"
-            className="accent-green-200 bg-blue-500"
-          ></input>{" "}
-          labels
-          <input type="checkbox" class="accent-pink-500"></input>
-        </label>
-      </div> */}
-      {/* testing for fun */}
 
 //HEX ABCDE #87ACE0 #607BA1 NOW#334155 #3A4A61 #232D3B
 
